@@ -7,41 +7,45 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 //require('es6-promise').polyfill();
 
 module.exports = (env) => {
-    if (!env.exploration) {
-        return {}
-    }
+    // if (!env.exploration) {
+    //     return {}
+    // }
     var exp = [];
-    var files = fs.readdirSync('./src/');
-    for (var i in files) {
-        if (files[i] == env.exploration) {
-            var directory = files[i];
-        }
-    }
+    var directory = './dist'
 
-    let configCopyWebpack = [
-        { from: `src/${directory}/audio`, to: `${directory}/audio` },
-        { from: `src/${directory}/data`, to: `${directory}/data` },
-        { from: `src/${directory}/images`, to: `${directory}/images` },
-        { from: `src/${directory}/styles`, to: `${directory}/styles` }
-    ];
+    // var files = fs.readdirSync('./src/');
+    // for (var i in files) {
+    //     if (files[i] == env.exploration) {
+    //         var directory = files[i];
+    //     }
+    // }
+
+    // let configCopyWebpack = [
+    //     { from: `src/${directory}/audio`, to: `${directory}/audio` },
+    //     { from: `src/${directory}/data`, to: `${directory}/data` },
+    //     { from: `src/${directory}/images`, to: `${directory}/images` },
+    //     { from: `src/${directory}/styles`, to: `${directory}/styles` }
+    // ];
 
     let configAssets = { from: `src/assets`, to: `assets` };
 
     if ('only' === env.assets) {
-        configCopyWebpack = [configAssets];
+        //configCopyWebpack = [configAssets];
     } else if ('include' === env.assets) {
-        configCopyWebpack.push(configAssets);
+        //configCopyWebpack.push(configAssets);
     }
 
+    configCopyWebpack = [configAssets];
+
     webpackConfig = {
-        entry: `./src/${directory}/index.js`,
+        entry: `./src/index.js`,
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'Big Ideas Learning',
+                title: 'Decorplast',
                 hash: true,
                 directory: `${directory}`,
-                template: `./src/index.html`,
-                filename: `./${directory}/index.html`,
+                template: `./src/template.html`,
+                filename: `./index.html`,
             }),
             new webpack.ProvidePlugin({
                 $: 'jquery',
@@ -50,7 +54,7 @@ module.exports = (env) => {
             new CopyWebpackPlugin(configCopyWebpack),
         ],
         output: {
-            filename: `${directory}/bundle.js`,
+            filename: `./bundle.js`,
             path: path.resolve(__dirname, 'dist')
         },
         module: {
@@ -61,7 +65,7 @@ module.exports = (env) => {
                         {
                             loader: 'file-loader',
                             options: {
-                                outputPath: `${directory}/audio/`
+                                outputPath: `./audio/`
                             }
                         }
                     ]
@@ -82,14 +86,14 @@ module.exports = (env) => {
                     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                     loader: 'url-loader?limit=10000&mimetype=application/font-woff',
                     options: {
-                        outputPath: `${directory}/fonts/`
+                        outputPath: `./assets/fonts/`
                     }
                 },
                 {
                     test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif)$/,
                     loader: 'file-loader',
                     options: {
-                        outputPath: `${directory}/fonts/`
+                        outputPath: `./assets/fonts/`
                     }
                 }
             ]
