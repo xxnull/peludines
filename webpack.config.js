@@ -11,7 +11,8 @@ module.exports = (env) => {
     //     return {}
     // }
     var exp = [];
-    var directory = './dist'
+    var directory = './dist';
+    var source = './src/assets';
 
     // var files = fs.readdirSync('./src/');
     // for (var i in files) {
@@ -20,22 +21,23 @@ module.exports = (env) => {
     //     }
     // }
 
-    // let configCopyWebpack = [
-    //     { from: `src/${directory}/audio`, to: `${directory}/audio` },
-    //     { from: `src/${directory}/data`, to: `${directory}/data` },
-    //     { from: `src/${directory}/images`, to: `${directory}/images` },
-    //     { from: `src/${directory}/styles`, to: `${directory}/styles` }
-    // ];
+    let configCopyWebpack = [
+        { from: `${source}/data`, to: `./assets/data` },
+        { from: `${source}/im`, to: `./assets/im` },
+        { from: `${source}/products`, to: `./assets/products` },
+        { from: `${source}/scripts`, to: `./assets/scripts` },
+        { from: `${source}/styles`, to: `./assets/styles` }
+    ];
 
-    let configAssets = { from: `src/assets`, to: `assets` };
+    //let configAssets = { from: `src/assets`, to: `${directory}/assets` };
 
-    if ('only' === env.assets) {
-        //configCopyWebpack = [configAssets];
-    } else if ('include' === env.assets) {
-        //configCopyWebpack.push(configAssets);
-    }
+    // if ('only' === env.assets) {
+    //     //configCopyWebpack = [configAssets];
+    // } else if ('include' === env.assets) {
+    //     //configCopyWebpack.push(configAssets);
+    // }
 
-    configCopyWebpack = [configAssets];
+    //configCopyWebpack = [configAssets];
 
     webpackConfig = {
         entry: `./src/index.js`,
@@ -49,7 +51,8 @@ module.exports = (env) => {
             }),
             new webpack.ProvidePlugin({
                 $: 'jquery',
-                jQuery: 'jquery'
+                jQuery: 'jquery',
+                'window.jQuery': 'jquery'
             }),
             new CopyWebpackPlugin(configCopyWebpack),
         ],
@@ -79,7 +82,7 @@ module.exports = (env) => {
                     loaders: ['style-loader', 'css-loader?url=false', 'sass-loader']
                 },
                 {
-                    test: /\.png$/,
+                    test: /\.(png|jpg)$/,
                     loader: 'url-loader?limit=100000'
                 },
                 {

@@ -6,24 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-
+        Decorplast Colombia
     </title>
-
 </head>
 
 <body>
-    <div class="activity-container">
-      
-       
-        
-    </div>
-    <!-- footer menu area -->
-    <div class="footer-bar" style="display:none;">
-        <div class="activity-navigation">
-
-        </div>
-    </div>
-   
+    <main role="main">
+        <%= require('html-loader!./assets/templates/jumbotron.html') %>
+        <%= require('html-loader!./assets/templates/intro.html') %>
+        <div class="container">
+                <div class="row" id="products-container">
+                       
+                </div>
+            </div>
+    </main>
+    <%= require('html-loader!./assets/templates/footer.html') %>
 </body>
 
 </html>

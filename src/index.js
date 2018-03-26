@@ -1,26 +1,14 @@
 import _ from 'lodash';
-import $ from 'jquery';
-
 require('bootstrap-loader');
-//import './styles/custom.scss';
-import 'bootstrap/dist/js/bootstrap.js';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import data from './assets/data/data';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/styles/style.scss';
+import catalogo from './assets/scripts/catalogo';
 
+(function () {
 
-(function ($) {
-  var MQ = MathQuill.getInterface(2);
-  var bool = false;
-  var count = 0;
-  var pg_count = 0;
-  var flag_rev = false;
-  var nex_cunt = 0;
+    
+    var x = catalogo(data);
 
-  // View preload and config.
-  var baseview = new BaseView(data);
-
-  // View instance for exploration.
-  $(document).ready(function(){
-    Ready(ActivityModel);
-  });
-}($))
+}())
