@@ -10,6 +10,7 @@ module.exports = (env) => {
     // if (!env.exploration) {
     //     return {}
     // }
+    mode: 'production';
     var exp = [];
     var directory = './dist';
     var source = './src/assets';
@@ -24,7 +25,6 @@ module.exports = (env) => {
     let configCopyWebpack = [
         { from: `${source}/data`, to: `./assets/data` },
         { from: `${source}/im`, to: `./assets/im` },
-        { from: `${source}/products`, to: `./assets/products` },
         { from: `${source}/scripts`, to: `./assets/scripts` },
         { from: `${source}/styles`, to: `./assets/styles` }
     ];
@@ -40,10 +40,14 @@ module.exports = (env) => {
     //configCopyWebpack = [configAssets];
 
     webpackConfig = {
+        devServer: {
+            inline:true,
+            port: 8008
+          },
         entry: `./src/index.js`,
         plugins: [
             new HtmlWebpackPlugin({
-                title: 'Decorplast',
+                title: 'Peludines',
                 hash: true,
                 directory: `${directory}`,
                 template: `./src/template.html`,
