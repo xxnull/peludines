@@ -7,8 +7,5 @@ import './assets/styles/style.scss';
 import catalogo from './assets/scripts/catalogo';
 
 (function () {
-
-    
     var x = catalogo(data);
-
 }())

@@ -1,25 +1,32 @@
-export default function catalogo(data){
-    var productos = [];
-    data.forEach(element => {
-        productos.push(
-            `<div class="col-md-3 col-sm-6">
-                
-                <span class="thumbnail">
-                    <h4>${element.articulo}</h4>
-                    <p>${element.descripcion}</p>
-                    <div class="img-container">
-                        <img src="./assets/products/producto_${element.id}.jpg" alt="...">
-                    </div>
-                    <hr class="line">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <p class="price">${element.precio}</p>
-                        </div>
-                    </div>
-                </span>
-            </div>`
-        )
-    });
-    var list = productos.reverse();
-    document.querySelector('#products-container').innerHTML = list;
- }
+export default function catalogo(data) {
+    const element = document.createElement('div');
+    const attribute = element.setAttribute("class", "peluditosClass")
+    //element.innerHTML = ""
+    console.log(element);
+    let body = document.querySelector('.peludines');
+    body.prepend(element);
+    
+    
+    
+
+    const peludinesList = `
+        ${data.map(peludin =>
+            `<ul id="peludines_list">
+                <li>${peludin.name}</li> 
+                <li>${peludin.size}</li>
+                <li>${peludin.color}</li>
+                <li>${peludin.raza}</li>
+                <li>${peludin.status}</li>
+                <li>${peludin.geo}</li>
+                <li>${peludin.email}</li>
+                <li>${peludin.responsable}</li>
+                <li>${peludin.pais}</li>
+                <li>${peludin.barrio}</li>
+                <li>${peludin.descripcion}</li>
+            </ul>`
+        ).join('')}`;
+
+
+    document.querySelector('.peluditosClass').innerHTML = peludinesList;
+}
+

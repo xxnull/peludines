@@ -6,21 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        Decorplast Colombia
+        Peludines
     </title>
 </head>
 
 <body>
+
     <main role="main">
-        <%= require('html-loader!./assets/templates/jumbotron.html') %>
         <%= require('html-loader!./assets/templates/intro.html') %>
-        <div class="container">
-                <div class="row" id="products-container">
-                       
-                </div>
-            </div>
+        <%= require('html-loader!./assets/templates/body.html') %>
+        <%= require('html-loader!./assets/templates/footer.html') %>
     </main>
-    <%= require('html-loader!./assets/templates/footer.html') %>
+
 </body>
 
 </html>
