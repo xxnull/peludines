@@ -25,6 +25,7 @@ module.exports = (env) => {
     let configCopyWebpack = [
         { from: `${source}/data`, to: `./assets/data` },
         { from: `${source}/im`, to: `./assets/im` },
+        { from: `${source}/images`, to: `./assets/images` },
         { from: `${source}/scripts`, to: `./assets/scripts` },
         { from: `${source}/styles`, to: `./assets/styles` }
     ];
@@ -86,8 +87,12 @@ module.exports = (env) => {
                     loaders: ['style-loader', 'css-loader?url=false', 'sass-loader']
                 },
                 {
-                    test: /\.(png|jpg)$/,
-                    loader: 'url-loader?limit=100000'
+                    test: /\.(jpe?g|png|gif|svg)$/i, 
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]',
+                        context: ''
+                    }
                 },
                 {
                     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -97,7 +102,7 @@ module.exports = (env) => {
                     }
                 },
                 {
-                    test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif)$/,
+                    test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif|png)$/,
                     loader: 'file-loader',
                     options: {
                         outputPath: `./assets/fonts/`
